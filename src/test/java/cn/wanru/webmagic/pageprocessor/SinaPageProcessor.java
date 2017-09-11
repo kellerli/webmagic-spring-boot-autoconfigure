@@ -8,7 +8,7 @@ import us.codecraft.webmagic.Page;
  * @date 17-9-9
  */
 @Component
-public class SinaPageProcessor extends SupportablePageProcessor {
+public class SinaPageProcessor implements SupportablePageProcessor {
 
     @Override
     public boolean support(Page page) {

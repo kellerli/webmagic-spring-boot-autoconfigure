@@ -15,7 +15,7 @@ import java.util.List;
  * @date 17-9-9
  */
 @Component
-public class NtesPageProcessor extends SupportablePageProcessor {
+public class NtesPageProcessor implements SupportablePageProcessor {
 
     @Override
     public boolean support(Page page) {

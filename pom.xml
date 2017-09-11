@@ -7,7 +7,7 @@
     <groupId>cn.wanru</groupId>
     <artifactId>webmagic-spring-boot-autoconfigure</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.3</version>
+    <version>1.0.4</version>
 
     <description>
         spring boot auto configure for webmagic,
@@ -17,6 +17,18 @@
 
     <url>http://www.wanruxiong.cn</url>
 
+    <developers>
+        <developer>
+            <name>wanru</name>
+            <email>xianfeng1987@126.com</email>
+        </developer>
+    </developers>
+
+    <scm>
+        <url>https://github.com/xianfengxiong/webmagic-spring-boot-autoconfigure</url>
+    </scm>
+
+
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -25,6 +37,8 @@
 
     <properties>
         <java.version>1.8</java.version>
+        <compiler.version>3.1</compiler.version>
+        <surefire.version>2.18.1</surefire.version>
         <webmagic.version>0.7.3</webmagic.version>
     </properties>
 
@@ -34,11 +48,6 @@
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
         <dependency>
-            <groupId>us.codecraft</groupId>
-            <artifactId>webmagic-core</artifactId>
-            <version>${webmagic.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
@@ -46,6 +55,18 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>us.codecraft</groupId>
+            <artifactId>webmagic-core</artifactId>
+            <version>${webmagic.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 
@@ -53,8 +74,17 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${compiler.version}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.18.1</version>
+                <version>${surefire.version}</version>
                 <configuration>
                     <skipTests>true</skipTests>
                 </configuration>

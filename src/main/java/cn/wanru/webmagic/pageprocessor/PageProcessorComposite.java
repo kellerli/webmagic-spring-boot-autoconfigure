@@ -44,7 +44,7 @@ public class PageProcessorComposite implements PageProcessor {
         if (processor == null) {
             throw new NotSupportException(page);
         }
-        log.trace("find page process {} for page {}",processor,page);
+        log.debug("find page process {} for page {}",processor,page);
         processor.process(page);
     }
 

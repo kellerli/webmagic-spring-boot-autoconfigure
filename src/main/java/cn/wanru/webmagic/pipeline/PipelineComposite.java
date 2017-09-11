@@ -32,7 +32,7 @@ public class PipelineComposite implements Pipeline {
             throw new NotSupportException(resultItems);
         }
 
-        log.trace("find {} pipeline(s) for resultitems {}",
+        log.debug("find {} pipeline(s) for resultitems {}",
                 pipelines.size(),resultItems);
 
         pipelines.forEach(pipeline -> pipeline.process(resultItems,task));

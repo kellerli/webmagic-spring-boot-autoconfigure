@@ -12,7 +12,7 @@ import us.codecraft.webmagic.Request;
  * @author xxf
  * @date 17-9-10
  */
-public abstract class PageablePageProcessor extends SupportablePageProcessor {
+public abstract class PageablePageProcessor implements SupportablePageProcessor {
 
     protected final Logger log = LoggerFactory.getLogger(getClass());
 
@@ -21,7 +21,7 @@ public abstract class PageablePageProcessor extends SupportablePageProcessor {
         processPageAndUpdatePageable(page);
         Pageable pageable = PageUtil.getPageable(page.getRequest());
         if (pageable != null) {
-            while (pageable.hasNext()) {
+            if (pageable.hasNext()) {
                 Pageable nextPage = pageable.next();
                 page.addTargetRequest(createRequest(nextPage));
                 log.debug("find next page {}, current page {}",nextPage,pageable);

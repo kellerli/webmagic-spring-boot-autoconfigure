@@ -9,11 +9,12 @@ import us.codecraft.webmagic.processor.PageProcessor;
  * @author xxf
  * @date 17-9-9
  */
-public abstract class SupportablePageProcessor
-        implements PageProcessor, Supportable<Page> {
+public interface SupportablePageProcessor
+        extends PageProcessor, Supportable<Page> {
 
     @Override
-    public Site getSite() {
+    public default Site getSite(){
         return null;
     }
+
 }
