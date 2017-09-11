@@ -18,8 +18,8 @@ public abstract class PageablePageProcessor implements SupportablePageProcessor 
 
     @Override
     public void process(Page page) {
-        processPageAndUpdatePageable(page);
         Pageable pageable = PageUtil.getPageable(page.getRequest());
+        processPageAndUpdatePageable(page,pageable);
         if (pageable != null) {
             if (pageable.hasNext()) {
                 Pageable nextPage = pageable.next();
@@ -39,8 +39,7 @@ public abstract class PageablePageProcessor implements SupportablePageProcessor 
 
     /**
      * NOTE : 一般的需要将 Page 里的 Pageable 对象状态进行改变
-     * 否则 {@link PageablePageProcessor#processPageAndUpdatePageable(Page)} 方法会陷入死循环
      * @param page
      */
-    protected abstract void processPageAndUpdatePageable(Page page);
+    protected abstract void processPageAndUpdatePageable(Page page,Pageable pageable);
 }

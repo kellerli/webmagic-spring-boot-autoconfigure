@@ -7,7 +7,7 @@
     <groupId>cn.wanru</groupId>
     <artifactId>webmagic-spring-boot-autoconfigure</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.4</version>
+    <version>1.0.5</version>
 
     <description>
         spring boot auto configure for webmagic,
