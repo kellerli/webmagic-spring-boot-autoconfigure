@@ -29,7 +29,18 @@ public abstract class PageablePageProcessor extends SupportablePageProcessor {
         }
     }
 
+    /**
+     * NOTE : 返回的 Request 必须正确设置 pageable
+     * @see PageUtil#setPageable(Request, Pageable)
+     * @param pageable
+     * @return
+     */
     protected abstract Request createRequest(Pageable pageable);
 
+    /**
+     * NOTE : 一般的需要将 Page 里的 Pageable 对象状态进行改变
+     * 否则 {@link PageablePageProcessor#doProcess(Page)} 方法会陷入死循环
+     * @param page
+     */
     protected abstract void doProcess(Page page);
 }
