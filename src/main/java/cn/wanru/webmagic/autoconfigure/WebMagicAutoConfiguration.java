@@ -47,6 +47,7 @@ public class WebMagicAutoConfiguration {
         CompositePageProcessor compositePageProcessor =
                 new CompositePageProcessor(beans);
         compositePageProcessor.setSite(getSite());
+        compositePageProcessor.setIgnore404(webMagicProperties.isIgnore404());
 
         List<SupportablePipeline> pipelines = getPipelines();
         PipelineComposite pipelineComposite = new PipelineComposite(pipelines);
@@ -75,7 +76,9 @@ public class WebMagicAutoConfiguration {
         if (webMagicProperties.getAcceptStatusCode() != null) {
             List<Integer> acceptCodes =
                     Arrays.asList(webMagicProperties.getAcceptStatusCode());
-
+            if (webMagicProperties.isIgnore404()) {
+                acceptCodes.add(404);
+            }
             Set<Integer> set = new HashSet<>(acceptCodes);
             site.setAcceptStatCode(set);
         }

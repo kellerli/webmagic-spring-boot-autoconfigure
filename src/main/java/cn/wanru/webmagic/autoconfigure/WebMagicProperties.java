@@ -16,6 +16,7 @@ public class WebMagicProperties {
     private boolean useGzip = true;
     private String userAgent;
     private String charset;
+    private boolean ignore404 = true;
 
     public WebMagicProperties() {
     }
@@ -86,5 +87,13 @@ public class WebMagicProperties {
 
     public void setCharset(String charset) {
         this.charset = charset;
+    }
+
+    public boolean isIgnore404() {
+        return ignore404;
+    }
+
+    public void setIgnore404(boolean ignore404) {
+        this.ignore404 = ignore404;
     }
 }
