@@ -3,7 +3,7 @@ package cn.wanru.webmagic.autoconfigure;
 import cn.wanru.webmagic.AlwaysFalseDuplicateRemover;
 import cn.wanru.webmagic.DisposableSpider;
 import cn.wanru.webmagic.listener.OrderedListener;
-import cn.wanru.webmagic.pageprocessor.PageProcessorComposite;
+import cn.wanru.webmagic.pageprocessor.CompositePageProcessor;
 import cn.wanru.webmagic.pageprocessor.SupportablePageProcessor;
 import cn.wanru.webmagic.pipeline.PipelineComposite;
 import cn.wanru.webmagic.pipeline.SupportablePipeline;
@@ -44,14 +44,14 @@ public class WebMagicAutoConfiguration {
     @Bean
     public Spider spider() {
         List<SupportablePageProcessor> beans = getPageProcessors();
-        PageProcessorComposite pageProcessorComposite =
-                new PageProcessorComposite(beans);
-        pageProcessorComposite.setSite(getSite());
+        CompositePageProcessor compositePageProcessor =
+                new CompositePageProcessor(beans);
+        compositePageProcessor.setSite(getSite());
 
         List<SupportablePipeline> pipelines = getPipelines();
         PipelineComposite pipelineComposite = new PipelineComposite(pipelines);
 
-        Spider spider = DisposableSpider.create(pageProcessorComposite)
+        Spider spider = DisposableSpider.create(compositePageProcessor)
                 .setScheduler(
                         new QueueScheduler().setDuplicateRemover(
                         new AlwaysFalseDuplicateRemover()))

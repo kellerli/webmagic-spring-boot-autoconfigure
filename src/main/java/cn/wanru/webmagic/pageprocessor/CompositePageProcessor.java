@@ -13,20 +13,20 @@ import java.util.List;
  * @author xxf
  * @date 17-9-9
  */
-public class PageProcessorComposite implements PageProcessor {
+public class CompositePageProcessor implements PageProcessor {
 
-    private static final Logger log = LoggerFactory.getLogger(PageProcessorComposite.class);
+    private static final Logger log = LoggerFactory.getLogger(CompositePageProcessor.class);
 
     private List<SupportablePageProcessor> pageProcessors;
     private Site site;
 
-    public PageProcessorComposite(
+    public CompositePageProcessor(
             List<SupportablePageProcessor> pageProcessors) {
 
         this.pageProcessors = pageProcessors;
     }
 
-    public PageProcessorComposite(
+    public CompositePageProcessor(
             List<SupportablePageProcessor> pageProcessors,
             Site site) {
 
