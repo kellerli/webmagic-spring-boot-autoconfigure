@@ -14,14 +14,14 @@ import java.util.stream.Collectors;
  * @author xxf
  * @date 17-9-9
  */
-public class PipelineComposite implements Pipeline {
+public class CompositePipeline implements Pipeline {
 
     private static final Logger log =
-            LoggerFactory.getLogger(PipelineComposite.class);
+            LoggerFactory.getLogger(CompositePipeline.class);
 
     private List<SupportablePipeline> pipelines;
 
-    public PipelineComposite(List<SupportablePipeline> pipelines) {
+    public CompositePipeline(List<SupportablePipeline> pipelines) {
         this.pipelines = pipelines;
     }
 

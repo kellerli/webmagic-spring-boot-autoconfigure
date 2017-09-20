@@ -5,7 +5,7 @@ import cn.wanru.webmagic.DisposableSpider;
 import cn.wanru.webmagic.listener.OrderedListener;
 import cn.wanru.webmagic.pageprocessor.CompositePageProcessor;
 import cn.wanru.webmagic.pageprocessor.SupportablePageProcessor;
-import cn.wanru.webmagic.pipeline.PipelineComposite;
+import cn.wanru.webmagic.pipeline.CompositePipeline;
 import cn.wanru.webmagic.pipeline.SupportablePipeline;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -50,7 +50,7 @@ public class WebMagicAutoConfiguration {
         compositePageProcessor.setIgnore404(webMagicProperties.isIgnore404());
 
         List<SupportablePipeline> pipelines = getPipelines();
-        PipelineComposite pipelineComposite = new PipelineComposite(pipelines);
+        CompositePipeline compositePipeline = new CompositePipeline(pipelines);
 
         Spider spider = DisposableSpider.create(compositePageProcessor)
                 .setScheduler(
@@ -58,7 +58,7 @@ public class WebMagicAutoConfiguration {
                         new AlwaysFalseDuplicateRemover()))
                 .thread(webMagicProperties.getThreadNum())
                 .setSpiderListeners(getSpiderListeners())
-                .addPipeline(pipelineComposite)
+                .addPipeline(compositePipeline)
                 .setExitWhenComplete(false);
         spider.runAsync();
         return spider;
